@@ -128,5 +128,68 @@ EQUAL_BOX.addEventListener("click", () => {
 });
 
 // keyboard support
-const PLUS = document.querySelector(".plus");
-PLUS.addEventListener("keydown", (e) => console.log(e));
+addEventListener("keydown", (e) => {
+  if (e.key >= 0 && e.key <= 9) {
+    if (temp) {
+      OUTPUT_BOX.textContent = "";
+      temp = false;
+    }
+    OUTPUT_BOX.textContent += +e.key;
+  }
+
+  if (e.key == ".") {
+    if (!OUTPUT_BOX.textContent.includes("."))
+      OUTPUT_BOX.textContent += DOT_BOX.textContent.trim();
+  }
+
+  if (e.key == "Backspace") {
+    OUTPUT_BOX.textContent = OUTPUT_BOX.textContent.slice(
+      0,
+      OUTPUT_BOX.textContent.length - 1
+    );
+  }
+
+  if (e.key == "/" || e.key == "*" || e.key == "-" || e.key == "+") {
+    if (operator) {
+      secondValue = +OUTPUT_BOX.textContent;
+
+      if (secondValue === 0 && operator === "/") {
+        alert("you remind me of an upside down dog stuck in a drain");
+        return;
+      }
+
+      firstValue = operate(operator, firstValue, secondValue);
+      OUTPUT_BOX.textContent = Math.round(firstValue * 10) / 10;
+
+      operator = e.key;
+      temp = true;
+      PREVIOUS_BOX.textContent += ` ${secondValue} ${operator}`;
+    } else {
+      firstValue = +OUTPUT_BOX.textContent;
+      operator = e.key;
+      temp = true;
+      PREVIOUS_BOX.textContent += ` ${firstValue} ${operator}`;
+      OUTPUT_BOX.textContent = "";
+    }
+  }
+
+  if (e.key == "Enter") {
+    +OUTPUT_BOX.textContent === ""
+      ? (secondValue = null)
+      : (secondValue = +OUTPUT_BOX.textContent);
+
+    if (secondValue === 0 && operator === "/") {
+      alert("you remind me of an upside down dog stuck in a drain");
+      return;
+    }
+
+    if (firstValue === null || operator === null || secondValue === null)
+      return;
+    firstValue = operate(operator, firstValue, secondValue);
+    OUTPUT_BOX.textContent = Math.round(firstValue * 10) / 10;
+
+    operator = null;
+    secondValue = null;
+    PREVIOUS_BOX.textContent = "";
+  }
+});
