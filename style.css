@@ -1,0 +1,86 @@
+body {
+  height: 100vh;
+
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  border: 2px solid rgb(27, 27, 27);
+  border-radius: 24px;
+  background-color: rgb(172, 172, 172);
+
+  width: 360px;
+  gap: 30px;
+  padding: 20px;
+
+  display: flex;
+  flex-flow: column;
+}
+
+.output {
+  border: 2px solid rgb(27, 27, 27);
+  border-radius: 8px;
+  background-color: white;
+
+  padding: 12px;
+  min-height: 86px;
+
+  display: flex;
+  flex-flow: column;
+}
+.previous-box {
+  color: rgb(59, 59, 59);
+  font-size: 20px;
+
+  flex-grow: 1;
+}
+.output-box {
+  font-size: 50px;
+
+  word-wrap: break-word;
+
+  flex-grow: 1;
+}
+
+.keypad {
+  border-radius: 8px;
+
+  gap: 10px;
+
+  display: flex;
+  flex-flow: column;
+}
+.keypad-row {
+  gap: 10px;
+
+  display: flex;
+}
+.text-box {
+  cursor: pointer;
+  border: 2px solid rgb(27, 27, 27);
+  border-radius: 8px;
+  background-color: white;
+  flex-grow: 1;
+
+  height: 60px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.text {
+  font-size: 20px;
+  width: 75px;
+
+  text-align: center;
+}
+
+.clear {
+  background-color: rgb(255, 103, 103);
+}
+.delete {
+  background-color: rgb(159, 159, 253);
+}
